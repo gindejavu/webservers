@@ -19,8 +19,7 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <div class="navLogo"><img src="@/assets/img/navLogo.png" alt="" /></div>
       </router-link>
       <router-link
         v-else
@@ -29,8 +28,7 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
+        <div class="navLogo"><img src="@/assets/img/navLogo.png" alt="" /></div>
       </router-link>
     </transition>
   </div>
@@ -40,8 +38,14 @@ const { title, getLogo } = useNav();
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 48px;
+  height: 80px;
+  padding-left: 44.7px;
   overflow: hidden;
+  background: rgb(0 0 0 / 100%) !important;
+
+  .navLogo {
+    background-color: rgb(0 0 0 / 100%);
+  }
 
   .sidebar-logo-link {
     display: flex;

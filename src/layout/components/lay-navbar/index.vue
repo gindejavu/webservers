@@ -1,4 +1,101 @@
-<script setup lang="ts">
+<template>
+  <div>
+    <div class="navBar">
+      <div class="navLeft">
+        <el-input
+          v-model="input"
+          style="width: 100%; max-width: 500px"
+          placeholder="Type here to search
+"
+        >
+          <template #prefix>
+            <img class="icon" src="@/assets/img/search.png" alt="" />
+          </template>
+        </el-input>
+      </div>
+      <div class="navRight">
+        <div class="icons">
+          <img src="@/assets/img/icons1.png" alt="" />
+          <div>
+            <el-dropdown
+              id="header-translation"
+              trigger="click"
+              :teleported="false"
+            >
+              <img src="@/assets/img/icons2.png" alt="" />
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item
+                    :style="getDropdownItemStyle(locale, 'zh')"
+                    @click="translationCh"
+                  >
+                    <IconifyIconOffline
+                      v-show="locale === 'zh'"
+                      :icon="Check"
+                    />
+                    简体中文
+                  </el-dropdown-item>
+                  <el-dropdown-item
+                    :style="getDropdownItemStyle(locale, 'en')"
+                    @click="translationEn"
+                  >
+                    <span v-show="locale === 'en'">
+                      <IconifyIconOffline :icon="Check" />
+                    </span>
+                    English
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
+          <img src="@/assets/img/icons3.png" alt="" />
+          <!-- 全屏 -->
+          <LaySidebarFullScreen id="full-screen" />
+        </div>
+        <div class="prices">＄99,56</div>
+        <div class="user-dropdown">
+          <el-dropdown
+            :teleported="false"
+            trigger="click"
+            @command="handleCommand"
+            @visible-change="handleVisibleChange"
+          >
+            <span class="user-trigger">
+              <div class="avater">
+                <img src="@/assets/img/avater.png" alt="" />
+              </div>
+              <div class="userName">Admin</div>
+              <!-- :class="{ rotated: isOpen }" -->
+              <img
+                class="arrdown"
+                :class="{ rotated: isOpen }"
+                src="@/assets/img/arrDown.png"
+                alt=""
+              />
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu class="dropdown-menu">
+                <el-dropdown-item command="changePassword">
+                  修改密码
+                </el-dropdown-item>
+                <el-dropdown-item command="recharge">
+                  在线充值
+                </el-dropdown-item>
+                <el-dropdown-item command="history">
+                  充值记录
+                </el-dropdown-item>
+                <el-dropdown-item command="logout"> 退出 </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue";
+
 import { useNav } from "@/layout/hooks/useNav";
 import LaySearch from "../lay-search/index.vue";
 import LayNotice from "../lay-notice/index.vue";
@@ -28,163 +125,187 @@ const {
 } = useNav();
 
 const { t, locale, translationCh, translationEn } = useTranslationLang();
+const input = ref("");
+const isOpen = ref(false);
+const handleVisibleChange = visible => {
+  isOpen.value = visible;
+  console.log("visible", visible, "isOpen", isOpen.value);
+};
+const handleCommand = command => {
+  switch (command) {
+    case "changePassword":
+      ElMessage.info("点击了 修改密码");
+      break;
+    case "recharge":
+      ElMessage.info("点击了 在线充值");
+      break;
+    case "history":
+      ElMessage.info("点击了 充值记录");
+      break;
+    case "logout":
+      ElMessage.info("点击了 退出");
+      break;
+  }
+};
 </script>
 
-<template>
-  <div class="navbar bg-[#fff] shadow-xs shadow-[rgba(0,21,41,0.08)]">
-    <LaySidebarTopCollapse
-      v-if="device === 'mobile'"
-      class="hamburger-container"
-      :is-active="pureApp.sidebar.opened"
-      @toggleClick="toggleSideBar"
-    />
-
-    <LaySidebarBreadCrumb
-      v-if="layout !== 'mix' && device !== 'mobile'"
-      class="breadcrumb-container"
-    />
-
-    <LayNavMix v-if="layout === 'mix'" />
-
-    <div v-if="layout === 'vertical'" class="vertical-header-right">
-      <!-- 菜单搜索 -->
-      <LaySearch id="header-search" />
-      <!-- 国际化 -->
-      <el-dropdown id="header-translation" trigger="click">
-        <GlobalizationIcon
-          class="navbar-bg-hover w-[40px] h-[48px] p-[11px] cursor-pointer outline-hidden"
-        />
-        <template #dropdown>
-          <el-dropdown-menu class="translation">
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['dark:text-white!', getDropdownItemClass(locale, 'zh')]"
-              @click="translationCh"
-            >
-              <IconifyIconOffline
-                v-show="locale === 'zh'"
-                class="check-zh"
-                :icon="Check"
-              />
-              简体中文
-            </el-dropdown-item>
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'en')"
-              :class="['dark:text-white!', getDropdownItemClass(locale, 'en')]"
-              @click="translationEn"
-            >
-              <span v-show="locale === 'en'" class="check-en">
-                <IconifyIconOffline :icon="Check" />
-              </span>
-              English
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <!-- 全屏 -->
-      <LaySidebarFullScreen id="full-screen" />
-      <!-- 消息通知 -->
-      <LayNotice id="header-notice" />
-      <!-- 退出登录 -->
-      <el-dropdown trigger="click">
-        <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img :src="userAvatar" :style="avatarsStyle" />
-          <p v-if="username" class="dark:text-white">{{ username }}</p>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu class="logout">
-            <el-dropdown-item @click="logout">
-              <IconifyIconOffline
-                :icon="LogoutCircleRLine"
-                style="margin: 5px"
-              />
-              {{ t("buttons.pureLoginOut") }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <span
-        class="set-icon navbar-bg-hover"
-        :title="t('buttons.pureOpenSystemSet')"
-        @click="onPanel"
-      >
-        <IconifyIconOffline :icon="Setting" />
-      </span>
-    </div>
-  </div>
-</template>
-
-<style lang="scss" scoped>
-.navbar {
+<style scoped lang="less">
+.navBar {
   width: 100%;
-  height: 48px;
-  overflow: hidden;
-
-  .hamburger-container {
-    float: left;
-    height: 100%;
-    line-height: 48px;
+  padding-left: 44.47px;
+  padding-right: 30px;
+  height: 80px;
+  line-height: 20px;
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  box-shadow: 0px 4px 10px 0px rgba(78, 89, 105, 0.2);
+  font-family: -regular;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navLeft {
+  flex: 1;
+  display: flex;
+  gap: 74.47px;
+  align-items: center;
+  .navLogo {
     cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 161.07px;
+    height: 36px;
   }
-
-  .vertical-header-right {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+.navRight {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+  .icons {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    min-width: 280px;
-    height: 48px;
-    color: #000000d9;
-
-    .el-dropdown-link {
+    gap: 20px;
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .prices {
+    line-height: 28px;
+    color: rgba(0, 239, 158, 1);
+    font-size: 20px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+  }
+  .user-dropdown {
+    padding-right: 10px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 40px;
+    background-color: rgba(51, 51, 51, 1);
+    border: 1px solid rgba(79, 79, 79, 1);
+    display: flex;
+    align-items: center;
+    .user-trigger {
       display: flex;
+      gap: 4px;
+
       align-items: center;
-      justify-content: space-around;
-      height: 48px;
-      padding: 10px;
-      color: #000000d9;
-      cursor: pointer;
-
-      p {
-        font-size: 14px;
-      }
-
-      img {
-        width: 22px;
-        height: 22px;
+      .avater {
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
+        background-color: rgba(229, 229, 229, 1);
+      }
+      .userName {
+        color: rgba(255, 255, 255, 1);
+        font-size: 14px;
+        font-family: PingFangSC-regular;
+      }
+      .arrdown {
+        width: 18px;
+        height: 18px;
       }
     }
   }
-
-  .breadcrumb-container {
-    float: left;
-    margin-left: 16px;
-  }
+}
+.arrdown {
+  transition: transform 0.3s ease;
 }
 
-.translation {
-  ::v-deep(.el-dropdown-menu__item) {
-    padding: 5px 40px;
-  }
-
-  .check-zh {
-    position: absolute;
-    left: 20px;
-  }
-
-  .check-en {
-    position: absolute;
-    left: 20px;
-  }
+.rotated {
+  transform: rotate(180deg);
+}
+:deep(.el-input__wrapper) {
+  height: 40px;
+  /* line-height: 20px; */
+  border-radius: 8px;
+  background-color: rgba(250, 250, 250, 1);
+  color: rgba(154, 154, 154, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: -regular;
+  /* border: 1px solid rgba(255, 0, 0, 0); */
+  box-shadow: none;
+}
+:deep(.el-input__wrapper .is-focus) {
+  box-shadow: none;
+}
+:deep(.el-input__wrapper:focus-within) {
+  /* border: 1px solid #00EF9E; 设置焦点时边框颜色为绿色  */
+}
+:deep(.el-input__inner) {
+  color: rgba(154, 154, 154, 1);
+}
+:deep(.el-input__inner::placeholder) {
+  color: rgba(154, 154, 154, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: -regular;
 }
 
-.logout {
-  width: 120px;
+:deep(.el-popper.is-light, .el-popper.is-light > .el-popper__arrow:before) {
+  background: rgba(51, 51, 51, 1);
+  border: 1px solid rgba(79, 79, 79, 1);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
 
-  ::v-deep(.el-dropdown-menu__item) {
-    display: inline-flex;
-    flex-wrap: wrap;
-    min-width: 100%;
-  }
+  width: 119px;
+  line-height: 20px;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 1);
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: -regular;
+  border: 1px solid rgba(79, 79, 79, 1);
+  padding: 10px;
+}
+:deep(.el-dropdown-menu) {
+  background-color: rgba(51, 51, 51, 1);
+}
+:deep(.el-popper.is-light > .el-popper__arrow:before) {
+  background: rgba(51, 51, 51, 1) !important;
+  border: 1px solid rgba(79, 79, 79, 1);
+}
+:deep(.el-dropdown-menu__item) {
+  background-color: transparent !important;
+
+  color: rgba(255, 255, 255, 1) !important;
+  font-size: 12px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+}
+
+:deep(.el-dropdown-menu__item:hover) {
+  background-color: rgba(0, 239, 158, 1) !important;
+  color: rgba(0, 0, 0, 1) !important;
+  border-radius: 8px;
 }
 </style>

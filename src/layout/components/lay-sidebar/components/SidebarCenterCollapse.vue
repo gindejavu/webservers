@@ -61,6 +61,7 @@ const toggleClick = () => {
   right: 2px;
   z-index: 1002;
   display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 24px;

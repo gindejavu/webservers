@@ -54,6 +54,22 @@ const permissionRouter = {
     }
   ]
 };
+// 最简代码，也就是这些字段必须有
+const fightingRouter = {
+  path: "/fighting",
+  meta: {
+    title: "加油"
+  },
+  children: [
+    {
+      path: "/fighting/index",
+      name: "Fighting",
+      meta: {
+        title: "加油"
+      }
+    }
+  ]
+};
 
 export default defineFakeRoute([
   {
@@ -62,7 +78,7 @@ export default defineFakeRoute([
     response: () => {
       return {
         success: true,
-        data: [permissionRouter]
+        data: [permissionRouter, fightingRouter]
       };
     }
   }

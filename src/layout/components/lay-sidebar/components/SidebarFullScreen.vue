@@ -24,7 +24,12 @@ watch(
 </script>
 
 <template>
-  <span class="fullscreen-icon navbar-bg-hover" @click="toggle">
-    <IconifyIconOffline :icon="screenIcon" />
+  <span style="cursor: pointer" class="" @click="toggle">
+    <!-- <IconifyIconOffline :icon="screenIcon" /> -->
+    <img
+      style="width: 24px; height: 24px"
+      src="@/assets/img/icons4.png"
+      alt=""
+    />
   </span>
 </template>
