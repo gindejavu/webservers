@@ -211,7 +211,7 @@ const submitForm = () => {
     background-color: #00ef9e;
     color: rgba(16, 16, 16, 1);
     font-size: 14px;
-    font-family: -bold;
+
     display: grid;
     place-items: center;
   }
@@ -268,7 +268,6 @@ const submitForm = () => {
   );
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
   border: 1px solid rgba(206, 206, 206, 1);
   box-shadow: none;
 }
@@ -282,7 +281,6 @@ const submitForm = () => {
   color: rgba(190, 190, 190, 1);
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
 }
 /* :deep(.el-input__inner:focus) {
   color: #00ff00;  设置焦点时输入文字颜色为绿色

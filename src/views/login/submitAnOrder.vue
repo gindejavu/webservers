@@ -303,7 +303,6 @@ const CloseDialog = () => {
     background-color: #00ef9e;
     color: rgba(16, 16, 16, 1);
     font-size: 14px;
-    font-family: -bold;
     display: grid;
     place-items: center;
   }
@@ -352,7 +351,6 @@ const CloseDialog = () => {
   );
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
   border: 1px solid rgba(206, 206, 206, 1);
   box-shadow: none;
 }
@@ -368,7 +366,6 @@ const CloseDialog = () => {
   color: rgba(190, 190, 190, 1);
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
 }
 
 :deep(.el-dialog__header.show-close) {
@@ -446,7 +443,6 @@ const CloseDialog = () => {
   background-color: rgba(0, 239, 158, 1);
   color: rgba(0, 0, 0, 1);
   font-size: 16px;
-  font-family: -bold;
   display: grid;
   place-items: center;
   margin: 0 auto;

@@ -38,10 +38,10 @@
         />
         <el-table-column label="操作" width="150">
           <template #default="{ row }">
-            <span style="cursor: pointer; color: #409eff; margin-right: 10px"
-              >老板交易</span
+            <span style=" margin-right: 10px; color: #409eff;cursor: pointer"
+              >{{ row }}老板交易</span
             >
-            <span style="cursor: pointer; color: #409eff">修改单价</span>
+            <span style=" color: #409eff;cursor: pointer">修改单价</span>
           </template>
         </el-table-column>
       </el-table>

@@ -269,7 +269,6 @@ const submitChangeForm = () => {
   background-color: #00ef9e;
   color: rgba(16, 16, 16, 1);
   font-size: 14px;
-  font-family: -bold;
   display: grid;
   place-items: center;
 }
@@ -308,7 +307,7 @@ const submitChangeForm = () => {
   );
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
+
   border: 1px solid rgba(206, 206, 206, 1);
   box-shadow: none;
   color: #fff;
@@ -323,14 +322,13 @@ const submitChangeForm = () => {
   color: rgba(190, 190, 190, 1);
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
 }
 :deep(.el-input.is-disabled .el-input__wrapper) {
   background: rgba(51, 51, 51, 1) !important;
   color: rgba(255, 255, 255, 1) !important;
   font-size: 12px;
   text-align: left;
-  font-family: -regular;
+
   box-shadow: none;
   cursor: not-allowed;
   border: none;
