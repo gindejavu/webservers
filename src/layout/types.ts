@@ -1,14 +1,14 @@
 import type { FunctionalComponent } from "vue";
 const { VITE_HIDE_HOME } = import.meta.env;
-
+import navIcon1 from "@/assets/svg/navIcon1.svg?component";
 export const routerArrays: Array<RouteConfigs> =
   VITE_HIDE_HOME === "false"
     ? [
         {
-          path: "/welcome",
+          path: "/home",
           meta: {
             title: "menus.pureHome",
-            icon: "ep/home-filled"
+            icon: navIcon1
           }
         }
       ]

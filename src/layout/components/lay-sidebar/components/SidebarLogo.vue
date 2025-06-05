@@ -19,7 +19,7 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <div class="navLogo"><img src="@/assets/img/navLogo.png" alt="" /></div>
+        <!-- <div class="navLogo"><img src="@/assets/img/navLogo.png" alt="" /></div> -->
       </router-link>
       <router-link
         v-else
@@ -39,7 +39,7 @@ const { title, getLogo } = useNav();
   position: relative;
   width: 100%;
   height: 80px;
-  padding-left: 44.7px;
+  padding-left: 24.7px;
   overflow: hidden;
   background: rgb(0 0 0 / 100%) !important;
 

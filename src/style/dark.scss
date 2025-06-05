@@ -22,12 +22,16 @@ html.dark {
   .sidebar-logo-container,
   .horizontal-header .el-sub-menu__title,
   .horizontal-header .submenu-title-noDropdown {
-    background: var(--el-bg-color) !important;
+    // background: var(--el-bg-color) !important;
+    background: #000 !important;
+  }
+  .tags-view {
+    background: #fff !important;
   }
 
   .app-main,
   .app-main-nofixed-header {
-    background: #020409 !important;
+    background: #f7f9fa !important;
   }
 
   /* 标签页 */

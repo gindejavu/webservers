@@ -6,8 +6,8 @@
 
 @theme {
   --color-bg_color: var(--el-bg-color);
-  --color-primary: var(--el-color-primary);
-  --color-text_color_primary: var(--el-text-color-primary);
+  --color-primary: #000 ;
+  --color-text_color_primary: #9A9A9A;
   --color-text_color_regular: var(--el-text-color-regular);
 }
 

@@ -76,19 +76,48 @@
             <template #dropdown>
               <el-dropdown-menu class="dropdown-menu">
                 <el-dropdown-item command="changePassword">
+                  <img
+                    class="dropdownIcon"
+                    src="@/assets/img/userImg1.png"
+                    alt=""
+                  />
                   修改密码
                 </el-dropdown-item>
                 <el-dropdown-item command="recharge">
+                  <img
+                    class="dropdownIcon"
+                    src="@/assets/img/userImg2.png"
+                    alt=""
+                  />
                   在线充值
                 </el-dropdown-item>
                 <el-dropdown-item command="history">
+                  <img
+                    class="dropdownIcon"
+                    src="@/assets/img/userImg3.png"
+                    alt=""
+                  />
                   充值记录
                 </el-dropdown-item>
-                <el-dropdown-item command="logout"> 退出 </el-dropdown-item>
+                <el-dropdown-item command="logout">
+                  <img
+                    class="dropdownIcon"
+                    src="@/assets/img/userImg4.png"
+                    alt=""
+                  />
+                  退出
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
         </div>
+        <span
+          class="set-icon navbar-bg-hover"
+          :title="t('buttons.pureOpenSystemSet')"
+          @click="onPanel"
+        >
+          <IconifyIconOffline :icon="Setting" />
+        </span>
       </div>
     </div>
   </div>
@@ -222,6 +251,7 @@ const handleCommand = command => {
         width: 38px;
         height: 38px;
         border-radius: 50%;
+        flex-shrink: 0;
         background-color: rgba(229, 229, 229, 1);
       }
       .userName {
@@ -301,11 +331,20 @@ const handleCommand = command => {
   font-size: 12px;
   text-align: left;
   font-family: PingFangSC-regular;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-
+.dropdownIcon {
+  width: 12px;
+  height: 12px;
+}
 :deep(.el-dropdown-menu__item:hover) {
   background-color: rgba(0, 239, 158, 1) !important;
   color: rgba(0, 0, 0, 1) !important;
   border-radius: 8px;
+  .dropdownIcon {
+    filter: brightness(1000%) invert(1);
+  }
 }
 </style>

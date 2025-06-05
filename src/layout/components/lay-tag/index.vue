@@ -24,6 +24,8 @@ import ArrowDown from "~icons/ri/arrow-down-s-line";
 import ArrowRightSLine from "~icons/ri/arrow-right-s-line";
 import ArrowLeftSLine from "~icons/ri/arrow-left-s-line";
 
+import navIcon1 from "@/assets/svg/navIcon1.svg?component";
+
 const {
   Close,
   route,
@@ -605,11 +607,11 @@ onBeforeUnmount(() => {
             >
               <IconifyIconOffline :icon="Close" />
             </span>
-            <span
+            <!-- <span
               v-if="showModel !== 'card'"
               :ref="'schedule' + index"
               :class="[scheduleIsActive(item)]"
-            />
+            /> -->
           </template>
           <div v-else class="chrome-tab">
             <div class="chrome-tab__bg">

@@ -93,7 +93,6 @@
     overflow: visible;
     font-size: 0;
     background: var(--pure-theme-menu-bg) !important;
-    border-right: 1px solid var(--pure-border-color);
 
     /* 展开动画 */
     transition: width var(--pure-transition-duration);
@@ -234,7 +233,7 @@
     /* 无子集的激活菜单背景 */
     .is-active.submenu-title-noDropdown.outer-most > * {
       z-index: 1;
-      color: #fff;
+      color: #000;
     }
 
     .is-active.submenu-title-noDropdown.outer-most::before {
@@ -243,8 +242,8 @@
       clear: both;
       margin: 4px 0;
       content: "";
+      border-radius: 8px;
       background: var(--el-color-primary) !important;
-      border-radius: 3px;
     }
   }
 
@@ -302,7 +301,7 @@
 
     .el-menu-item.is-active.nest-menu > * {
       z-index: 1;
-      color: #fff;
+      color: #000;
     }
 
     .el-menu-item.is-active.nest-menu::before {
@@ -599,12 +598,12 @@ body[layout="vertical"] {
 
   .hideSidebar {
     .fixed-header {
-      width: calc(100% - 54px);
+      width: calc(100% - 80px);
       transition: width var(--pure-transition-duration);
     }
 
     .sidebar-container {
-      width: 54px !important;
+      width: 80px !important;
       transition: width var(--pure-transition-duration);
 
       .is-active.submenu-title-noDropdown.outer-most {
@@ -613,7 +612,7 @@ body[layout="vertical"] {
     }
 
     .main-container {
-      margin-left: 54px;
+      margin-left: 80px;
     }
 
     /* 菜单折叠 */
@@ -640,6 +639,7 @@ body[layout="vertical"] {
 
     .sub-menu-icon {
       margin-right: 0;
+      
     }
   }
 
@@ -686,7 +686,7 @@ body[layout="mix"] {
   @include merge-style($sideBarWidth);
 
   .el-menu--collapse {
-    width: 54px;
+    width: 80px;
   }
 
   .el-menu {
@@ -696,12 +696,12 @@ body[layout="mix"] {
 
   .hideSidebar {
     .fixed-header {
-      width: calc(100% - 54px);
+      width: calc(100% - 80px);
       transition: width var(--pure-transition-duration);
     }
 
     .sidebar-container {
-      width: 54px !important;
+      width: 80px !important;
       transition: width var(--pure-transition-duration);
 
       .is-active.submenu-title-noDropdown.outer-most {
@@ -710,7 +710,7 @@ body[layout="mix"] {
     }
 
     .main-container {
-      margin-left: 54px;
+      margin-left: 80px;
     }
 
     /* 菜单折叠 */

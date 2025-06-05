@@ -22,7 +22,7 @@ import "element-plus/dist/index.css";
 // 导入字体图标
 import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
-
+import plugin from "./components/index";
 const app = createApp(App);
 
 // 自定义指令
@@ -52,6 +52,8 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import VueTippy from "vue-tippy";
 app.use(VueTippy);
+// 全局注册全局组件
+app.use(plugin);
 
 getPlatformConfig(app).then(async config => {
   setupStore(app);

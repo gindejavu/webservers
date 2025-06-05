@@ -56,13 +56,13 @@ const getSectionStyle = computed(() => {
     !hideTabs.value && layout
       ? showModel.value == "chrome"
         ? "padding-top: 85px;"
-        : "padding-top: 81px;"
+        : "padding-top: 151px;"
       : "",
     hideTabs.value && !layout.value ? "padding-top: 48px;" : "",
     !hideTabs.value && !layout.value
       ? showModel.value == "chrome"
         ? "padding-top: 85px;"
-        : "padding-top: 81px;"
+        : "padding-top: 151px;"
       : "",
     props.fixedHeader
       ? ""
@@ -160,7 +160,7 @@ const transitionMain = defineComponent({
                   />
                 </transitionMain>
               </div>
-              <LayFooter v-if="!hideFooter" />
+              <!-- <LayFooter v-if="!hideFooter" /> -->
             </el-scrollbar>
             <div v-else class="grow">
               <transitionMain :route="route">
@@ -190,7 +190,7 @@ const transitionMain = defineComponent({
     </router-view>
 
     <!-- 页脚 -->
-    <LayFooter v-if="!hideFooter && !fixedHeader" />
+    <!-- <LayFooter v-if="!hideFooter && !fixedHeader" /> -->
   </section>
 </template>
 
@@ -199,6 +199,7 @@ const transitionMain = defineComponent({
   position: relative;
   width: 100%;
   height: 100vh;
+  /* padding-bottom: 20px; */
   overflow-x: hidden;
 }
 
@@ -210,6 +211,6 @@ const transitionMain = defineComponent({
 }
 
 .main-content {
-  margin: 24px;
+  margin: 20px;
 }
 </style>
